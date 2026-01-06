@@ -1,0 +1,19 @@
+# Configurações do Supabase (NÃO commitar!)
+config/supabase.js
+
+# Logs
+*.log
+
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporários
+*.tmp
+temp/

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Início Rápido - Psico Manager</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+    }
+    
+    .content {
+      padding: 2rem;
+    }
+    
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    .section h2 {
+      color: #6366f1;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    
+    .steps {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+    
+    .steps li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .steps li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: #6366f1;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    
+    .code-block {
+      background: #1f2937;
+      color: #e5e7eb;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      margin: 1rem 0;
+    }
+    
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      border-left: 4px solid;
+    }
+    
+    .alert-success {
+      background: #d1fae5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+    
+    .alert-warning {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #92400e;
+    }
+    
+    .alert-info {
+      background: #dbeafe;
+      border-color: #3b82f6;
+      color: #1e40af;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #6366f1;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+    }
+    
+    .btn:hover {
+      background: #4f46e5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+    
+    .btn-secondary {
+      background: #10b981;
+    }
+    
+    .btn-secondary:hover {
+      background: #059669;
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .feature {
+      padding: 1rem;
+      background: #f9fafb;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+    }
+    
+    .feature h3 {
+      color: #6366f1;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature p {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    
+    .footer {
+      background: #f9fafb;
+      padding: 2rem;
+      text-align: center;
+      color: #6b7280;
+      border-top: 1px solid #e5e7eb;
+    }
+    
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .content {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🧠 Psico Manager</h1>
+      <p>Sistema Completo de Gestão para Psicólogos</p>
+    </div>
+    
+    <div class="content">
+      <div class="alert alert-success">
+        <strong>✅ Sistema Criado com Sucesso!</strong><br>
+        Todos os arquivos foram criados e estão prontos para uso.
+      </div>
+      
+      <div class="section">
+        <h2>🚀 Início Rápido</h2>
+        <ol class="steps">
+          <li>
+            <strong>Criar projeto no Supabase</strong><br>
+            Acesse <a href="https://supabase.com" target="_blank">supabase.com</a> e crie uma conta gratuita.
+          </li>
+          <li>
+            <strong>Executar o Schema SQL</strong><br>
+            No Supabase, vá em "SQL Editor" e execute o arquivo <code>database/schema.sql</code>
+          </li>
+          <li>
+            <strong>Configurar credenciais</strong><br>
+            Copie <code>config/supabase.example.js</code> para <code>config/supabase.js</code> e adicione suas credenciais.
+          </li>
+          <li>
+            <strong>Iniciar servidor local</strong><br>
+            Use Live Server, Python ou Node.js para servir os arquivos.
+          </li>
+          <li>
+            <strong>Criar sua conta</strong><br>
+            Abra o sistema, crie uma conta e comece a usar!
+          </li>
+        </ol>
+      </div>
+      
+      <div class="section">
+        <h2>📦 O que foi desenvolvido?</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>🔐 Autenticação</h3>
+            <p>Login, registro, recuperação de senha e controle de sessão completo.</p>
+          </div>
+          <div class="feature">
+            <h3>📊 Dashboard</h3>
+            <p>Métricas em tempo real, próximas sessões e alertas importantes.</p>
+          </div>
+          <div class="feature">
+            <h3>👥 Pacientes</h3>
+            <p>CRUD completo com validações LGPD, busca e filtros avançados.</p>
+          </div>
+          <div class="feature">
+            <h3>🔒 Segurança</h3>
+            <p>Row Level Security, criptografia e proteção de dados.</p>
+          </div>
+          <div class="feature">
+            <h3>📱 Responsivo</h3>
+            <p>Interface adaptável para desktop, tablet e mobile.</p>
+          </div>
+          <div class="feature">
+            <h3>🎨 Design Moderno</h3>
+            <p>Interface clean e profissional com UX otimizada.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2>📚 Documentação</h2>
+        <p>Toda a documentação está disponível nos seguintes arquivos:</p>
+        <ul style="margin: 1rem 0; padding-left: 2rem;">
+          <li><strong>README.md</strong> - Visão geral do projeto</li>
+          <li><strong>CONFIGURACAO.md</strong> - Guia completo de configuração</li>
+          <li><strong>FUNCIONALIDADES.md</strong> - Detalhes de todas as funcionalidades</li>
+        </ul>
+      </div>
+      
+      <div class="section">
+        <h2>⚡ Comandos Úteis</h2>
+        
+        <p><strong>Live Server (VS Code):</strong></p>
+        <div class="code-block">
+# Instale a extensão "Live Server" e clique com botão direito em index.html
+Open with Live Server
+        </div>
+        
+        <p><strong>Servidor Python:</strong></p>
+        <div class="code-block">
+cd psico-manager
+python -m http.server 8000
+# Acesse: http://localhost:8000
+        </div>
+        
+        <p><strong>Servidor Node.js:</strong></p>
+        <div class="code-block">
+cd psico-manager
+npx http-server -p 8000
+# Acesse: http://localhost:8000
+        </div>
+      </div>
+      
+      <div class="alert alert-warning">
+        <strong>⚠️ IMPORTANTE - Segurança</strong><br>
+        Nunca commite o arquivo <code>config/supabase.js</code> com suas credenciais reais. Ele já está no .gitignore.
+      </div>
+      
+      <div class="alert alert-info">
+        <strong>💡 Dica</strong><br>
+        Leia o arquivo <code>CONFIGURACAO.md</code> para instruções detalhadas passo a passo.
+      </div>
+      
+      <div class="section">
+        <h2>🎯 Próximos Passos</h2>
+        <a href="index.html" class="btn">Abrir Sistema</a>
+        <a href="CONFIGURACAO.md" class="btn btn-secondary">Ver Guia de Configuração</a>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p><strong>Psico Manager</strong> v1.0.0</p>
+      <p>Desenvolvido com ❤️ para profissionais de psicologia</p>
+      <p style="margin-top: 1rem; font-size: 0.875rem;">
+        Janeiro 2026 | Todos os direitos reservados
+      </p>
+    </div>
+  </div>
+</body>
+</html>

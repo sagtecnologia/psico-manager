@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda - Psico Manager</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/modules/dashboard.css">
+  <link rel="stylesheet" href="../css/modules/agenda.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg width="32" height="32" viewBox="0 0 50 50" fill="none">
+            <circle cx="25" cy="25" r="23" stroke="#fff" stroke-width="3"/>
+            <path d="M25 15 C25 15, 30 20, 30 25 C30 30, 25 35, 25 35" stroke="#fff" stroke-width="2.5" fill="none"/>
+            <path d="M25 15 C25 15, 20 20, 20 25 C20 30, 25 35, 25 35" stroke="#fff" stroke-width="2.5" fill="none"/>
+          </svg>
+          <span>Psico Manager</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Menu Principal</div>
+          <a href="../dashboard.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="agenda.html" class="nav-item active">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+            <span>Agenda</span>
+          </a>
+          <a href="pacientes.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+            <span>Pacientes</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Clínico</div>
+          <a href="prontuarios.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+            </svg>
+            <span>Prontuários</span>
+          </a>
+          <a href="evolucoes.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+            </svg>
+            <span>Evoluções</span>
+          </a>
+          <a href="documentos.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+            <span>Documentos</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Gestão</div>
+          <a href="financeiro.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Financeiro</span>
+          </a>
+          <a href="relatorios.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+            <span>Relatórios</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Configurações</div>
+          <a href="perfil.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+            </svg>
+            <span>Meu Perfil</span>
+          </a>
+          <a href="configuracoes.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Configurações</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" id="userAvatar">PS</div>
+          <div class="user-info">
+            <div class="user-name" id="userName">Psicólogo</div>
+            <button class="btn-logout" id="logoutBtn">Sair</button>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="page-header">
+        <div>
+          <h1>Agenda</h1>
+          <p class="page-subtitle">Gerencie suas sessões e atendimentos</p>
+        </div>
+        <button class="btn btn-primary" id="btnNovaSessao">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          Nova Sessão
+        </button>
+      </div>
+
+      <!-- Navegação da Agenda -->
+      <div class="agenda-navigation">
+        <button class="btn btn-secondary btn-sm" id="btnSemanaAnterior">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+        </button>
+        <span class="agenda-periodo" id="periodoAtual">Carregando...</span>
+        <button class="btn btn-secondary btn-sm" id="btnProximaSemana">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </button>
+        <button class="btn btn-secondary btn-sm" id="btnHoje">Hoje</button>
+        <button class="btn btn-outline btn-sm" id="btnVerRealizadas">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          Ver Realizadas
+        </button>
+        <button class="btn btn-outline btn-sm" id="btnVerCanceladas">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          Ver Canceladas
+        </button>
+      </div>
+
+      <!-- Grid da Agenda Semanal -->
+      <div class="agenda-container">
+        <div class="agenda-grid" id="agendaGrid">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Sessões Realizadas -->
+      <div class="sessoes-realizadas" id="sessoesRealizadas" style="display: none;">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+          <h3 style="margin: 0;">Sessões Realizadas</h3>
+          <button class="btn btn-secondary btn-sm" id="btnFecharRealizadas">Fechar</button>
+        </div>
+        <div class="sessoes-list" id="listaRealizadas" style="padding: 1rem;">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Sessões Canceladas -->
+      <div class="sessoes-canceladas" id="sessoesCanceladas" style="display: none;">
+        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+          <h3 style="margin: 0;">Sessões Canceladas</h3>
+          <button class="btn btn-secondary btn-sm" id="btnFecharCanceladas">Fechar</button>
+        </div>
+        <div class="sessoes-list" id="listaCanceladas" style="padding: 1rem;">
+          <!-- Será preenchido dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Lista de Sessões (visualização alternativa) -->
+      <div class="sessoes-list" id="sessoesList" style="display: none;">
+        <!-- Será preenchido dinamicamente -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Nova/Editar Sessão -->
+  <div id="modalSessao" class="modal" style="display: none;">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h2 id="modalSessaoTitle">Nova Sessão</h2>
+        <button class="modal-close" id="closeSessaoModal">&times;</button>
+      </div>
+      <form id="formSessao">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="sessaoPaciente">Paciente *</label>
+            <select id="sessaoPaciente" required>
+              <option value="">Selecione um paciente</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoData">Data *</label>
+            <input type="date" id="sessaoData" required>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoHora">Horário *</label>
+            <input type="time" id="sessaoHora" required>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoDuracao">Duração (minutos) *</label>
+            <input type="number" id="sessaoDuracao" value="50" min="30" max="240" required>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoTipo">Tipo *</label>
+            <select id="sessaoTipo" required>
+              <option value="presencial">Presencial</option>
+              <option value="online">Online</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoStatus">Status *</label>
+            <select id="sessaoStatus" required>
+              <option value="agendada">Agendada</option>
+              <option value="realizada">Realizada</option>
+              <option value="cancelada">Cancelada</option>
+              <option value="falta">Falta</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="sessaoValor">Valor (R$)</label>
+            <input type="number" id="sessaoValor" step="0.01" min="0">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="sessaoLinkOnline">Link Online</label>
+            <input type="url" id="sessaoLinkOnline" placeholder="https://meet.google.com/...">
+          </div>
+
+          <div class="form-group full-width">
+            <label for="sessaoObservacoes">Observações</label>
+            <textarea id="sessaoObservacoes" rows="3" placeholder="Observações sobre a sessão..."></textarea>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="btnCancelarSessao">Cancelar</button>
+          <button type="submit" class="btn btn-primary" id="btnSalvarSessao">
+            <span class="btn-text">Salvar</span>
+            <span class="btn-loading" style="display: none;">
+              <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+              </svg>
+              Salvando...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config/supabase.js"></script>
+  <script src="../js/utils/helpers.js"></script>
+  <script src="../js/modules/agenda.js"></script>
+</body>
+</html>

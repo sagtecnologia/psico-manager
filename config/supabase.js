@@ -2,16 +2,20 @@
 // CONFIGURAÇÃO DO SUPABASE
 // ================================
 // 
-// ⚠️ SUBSTITUA AS CREDENCIAIS ABAIXO PELAS SUAS!
+// ⚠️ ATENÇÃO: SUBSTITUA AS CREDENCIAIS ABAIXO PELAS SUAS CREDENCIAIS REAIS!
 // 
-// Para obter suas credenciais:
+// 🔑 Como obter suas credenciais:
 // 1. Acesse: https://app.supabase.com
 // 2. Selecione seu projeto
-// 3. Vá em Settings > API
-// 4. Copie a Project URL e a anon/public key
+// 3. Vá em: Settings > API
+// 4. Copie:
+//    - Project URL → SUPABASE_URL
+//    - anon public → SUPABASE_ANON_KEY (a chave longa que começa com "eyJ...")
+//
+// ⚠️ IMPORTANTE: Certifique-se de copiar a chave COMPLETA (ela é muito longa!)
 
-const SUPABASE_URL = 'https://ekpswrbjaflquxmacsmq.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVrcHN3cmJqYWZscXV4bWFjc21xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzY4MTI4NTIsImV4cCI6MjA1MjM4ODg1Mn0.4FJVcwYEb-C1jkUwEtVzx7XrgHAoJH84ypj5n4RvqVA';
+const SUPABASE_URL = 'https://seu-projeto.supabase.co';
+const SUPABASE_ANON_KEY = 'sua-chave-anonima-completa-aqui-ela-e-muito-longa-comeca-com-eyJ';
 
 // Inicializar cliente Supabase
 window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);

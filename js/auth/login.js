@@ -3,6 +3,13 @@
 // ================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Verificar se o Supabase foi inicializado
+  if (typeof supabase === 'undefined' || !supabase) {
+    console.error('❌ Erro: Cliente Supabase não inicializado!');
+    alert('Erro de configuração: As credenciais do Supabase não foram configuradas.\n\nPor favor, crie o arquivo config/supabase.js com suas credenciais.');
+    return;
+  }
+  
   // Verificar se já está logado
   checkAuth();
   

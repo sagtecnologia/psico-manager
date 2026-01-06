@@ -19,14 +19,56 @@ Sistema profissional completo para gestão de consultórios e clínicas de psico
 - 📄 Gestão de Documentos
 - 🔒 Conformidade LGPD
 
-## 🛠️ Configuração
+## 🛠️ Instalação Local
 
-1. **Crie um projeto no Supabase**: https://supabase.com
-2. **Configure as variáveis de ambiente**:
-   - Copie `config/supabase.example.js` para `config/supabase.js`
-   - Adicione suas credenciais do Supabase
-3. **Execute o schema do banco**: Execute o SQL em `database/schema.sql` no Supabase
-4. **Abra o projeto**: Abra `index.html` em um servidor local
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/sagtecnologia/psico-manager.git
+   cd psico-manager
+   ```
+
+2. **Configure o Supabase**:
+   ```bash
+   # Copie o template de configuração
+   cp config/supabase.template.js config/supabase.js
+   ```
+   
+3. **Adicione suas credenciais** no arquivo `config/supabase.js`:
+   - Crie um projeto em [supabase.com](https://supabase.com)
+   - Copie a Project URL e anon key
+   - Cole no arquivo de configuração
+
+4. **Configure o banco de dados**:
+   - Execute `database/schema.sql` no SQL Editor do Supabase
+   - Execute `database/fix-rls-complete.sql` para segurança
+
+5. **Abra o projeto**:
+   ```bash
+   # Usando Python
+   python -m http.server 8000
+   
+   # Ou usando Node.js
+   npx serve
+   ```
+   
+6. **Acesse**: http://localhost:8000
+
+## 🚀 Deploy em Produção
+
+Para fazer deploy em produção, consulte o guia completo:
+
+👉 **[DEPLOY.md](DEPLOY.md)** - Instruções completas de deploy
+
+### Quick Start para Deploy:
+1. Crie `config/supabase.js` com suas credenciais
+2. Execute os scripts SQL no Supabase
+3. Faça upload dos arquivos para seu servidor
+4. Acesse e teste!
+
+**Plataformas recomendadas (grátis):**
+- GitHub Pages
+- Vercel
+- Netlify
 
 ## 📁 Estrutura do Projeto
 

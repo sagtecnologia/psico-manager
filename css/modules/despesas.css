@@ -1,0 +1,241 @@
+/* ================================
+   DESPESAS - ESTILOS
+   ================================ */
+
+.despesas-container {
+  display: grid;
+  gap: 1rem;
+}
+
+.despesa-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-left: 4px solid #ef4444;
+}
+
+.despesa-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.despesa-card.pago {
+  border-left-color: #10b981;
+}
+
+.despesa-card.pendente {
+  border-left-color: #f59e0b;
+}
+
+.despesa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.despesa-info {
+  flex: 1;
+}
+
+.despesa-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.despesa-categoria svg {
+  width: 16px;
+  height: 16px;
+}
+
+.despesa-descricao {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.despesa-valor {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.despesa-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.despesa-actions button {
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+}
+
+.despesa-actions button:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.despesa-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 1rem;
+}
+
+.despesa-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.despesa-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.despesa-meta-item svg {
+  width: 16px;
+  height: 16px;
+}
+
+.despesa-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.despesa-status.pago {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.despesa-status.pendente {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.despesa-status svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Modal Status */
+.modal-small {
+  max-width: 400px;
+}
+
+.status-options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.status-options .btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+}
+
+.status-options .btn svg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #6b7280;
+}
+
+.empty-state svg {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  font-size: 1.25rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .despesa-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .despesa-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .despesa-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .status-options {
+    flex-direction: column;
+  }
+
+  .status-options .btn {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* Ícones das categorias */
+.categoria-icon-aluguel::before { content: '🏢'; }
+.categoria-icon-material::before { content: '📦'; }
+.categoria-icon-equipamento::before { content: '💻'; }
+.categoria-icon-marketing::before { content: '📢'; }
+.categoria-icon-software::before { content: '⚙️'; }
+.categoria-icon-transporte::before { content: '🚗'; }
+.categoria-icon-alimentacao::before { content: '🍽️'; }
+.categoria-icon-outros::before { content: '📋'; }

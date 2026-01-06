@@ -4,172 +4,219 @@
 
 1. Conta ativa no [Supabase](https://supabase.com)
 2. Projeto criado no Supabase com o banco de dados configurado
-3. Servidor web para hospedar os arquivos (Apache, Nginx, GitHub Pages, Vercel, etc.)
+3. Suas credenciais do Supabase (Project URL e anon key)
 
-## 📋 Passo a Passo
+## 📋 Método Recomendado: Deploy com Meta Tags
 
-### 1. Configurar o Supabase
+### Vantagens:
+- ✅ Não precisa criar arquivos adicionais
+- ✅ Funciona em qualquer plataforma (Netlify, Vercel, GitHub Pages)
+- ✅ Mais simples e direto
 
-#### 1.1. Criar o arquivo de configuração
-```bash
-# Na pasta do projeto, copie o template:
-cp config/supabase.template.js config/supabase.js
-```
+### Passo a Passo:
 
-#### 1.2. Adicionar suas credenciais
-Edite o arquivo `config/supabase.js` e substitua:
-```javascript
-const SUPABASE_URL = 'https://seu-projeto.supabase.co'; // Sua URL
-const SUPABASE_ANON_KEY = 'sua-chave-anonima-aqui'; // Sua chave
-```
-
-**Como obter as credenciais:**
+#### 1. Obter Credenciais do Supabase
 1. Acesse [https://app.supabase.com](https://app.supabase.com)
 2. Selecione seu projeto
 3. Vá em **Settings** → **API**
 4. Copie:
-   - **Project URL** → `SUPABASE_URL`
-   - **anon/public key** → `SUPABASE_ANON_KEY`
+   - **Project URL** (ex: `https://abc123.supabase.co`)
+   - **anon/public key** (chave longa começando com `eyJ...`)
 
-### 2. Configurar o Banco de Dados
+#### 2. Editar os Arquivos HTML
+
+Edite os seguintes arquivos e substitua as credenciais nas meta tags:
+
+**Arquivos a editar:**
+- `index.html`
+- `dashboard.html`
+- `pages/pacientes.html`
+- `pages/agenda.html`
+- `pages/prontuarios.html`
+- `pages/evolucoes.html`
+- `pages/financeiro.html`
+- `pages/documentos.html`
+- `pages/relatorios.html`
+- `pages/perfil.html`
+- `pages/configuracoes.html`
+
+**Procure por estas linhas e substitua os valores:**
+```html
+<meta name="supabase-url" content="https://seu-projeto.supabase.co">
+<meta name="supabase-key" content="sua-chave-anonima-aqui">
+```
+
+**Substitua por:**
+```html
+<meta name="supabase-url" content="https://SUA-URL-AQUI.supabase.co">
+<meta name="supabase-key" content="SUA-CHAVE-AQUI">
+```
+
+#### 3. Configurar o Banco de Dados
 
 Execute os scripts SQL no Supabase (na ordem):
 
 1. **Schema principal:**
-   ```sql
-   -- Execute: database/schema.sql
-   ```
+   - Abra o SQL Editor no Supabase
+   - Cole o conteúdo de `database/schema.sql`
+   - Execute
 
 2. **Políticas de segurança:**
-   ```sql
-   -- Execute: database/fix-rls-complete.sql
-   ```
+   - Cole o conteúdo de `database/fix-rls-complete.sql`
+   - Execute
 
-3. **Atualizar status de sessões (se necessário):**
-   ```sql
-   -- Execute: database/update-sessoes-status.sql
-   ```
+#### 4. Fazer Deploy
 
-**Como executar:**
-1. Acesse seu projeto no Supabase
-2. Vá em **SQL Editor**
-3. Crie uma nova query
-4. Cole o conteúdo do arquivo e execute
+**Opção A: Netlify (Recomendado - Grátis)**
 
-### 3. Deploy dos Arquivos
+1. Crie conta em [netlify.com](https://netlify.com)
+2. Clique em "Add new site" → "Import an existing project"
+3. Conecte com GitHub e selecione seu repositório
+4. Configure:
+   - Build command: (deixe vazio)
+   - Publish directory: `/`
+5. Clique em "Deploy"
+6. Aguarde o deploy finalizar
 
-#### Opção A: GitHub Pages (Grátis)
-```bash
-# Já está no GitHub!
-# Habilite GitHub Pages:
-# 1. Vá em Settings > Pages
-# 2. Selecione branch: master
-# 3. Clique em Save
-```
+**Opção B: Vercel (Grátis)**
 
-#### Opção B: Vercel (Grátis)
-```bash
-# Instale o Vercel CLI
-npm i -g vercel
+1. Crie conta em [vercel.com](https://vercel.com)
+2. Clique em "Add New..." → "Project"
+3. Import seu repositório do GitHub
+4. Configure:
+   - Framework Preset: Other
+   - Root Directory: ./
+5. Clique em "Deploy"
 
-# Na pasta do projeto:
-vercel
+**Opção C: GitHub Pages (Grátis)**
 
-# Siga as instruções
-```
+1. No repositório, vá em Settings → Pages
+2. Source: Deploy from a branch
+3. Branch: master / (root)
+4. Clique em "Save"
+5. Aguarde alguns minutos
 
-#### Opção C: Netlify (Grátis)
-```bash
-# Instale o Netlify CLI
-npm i -g netlify-cli
-
-# Na pasta do projeto:
-netlify deploy
-
-# Para produção:
-netlify deploy --prod
-```
-
-#### Opção D: Servidor Próprio
-```bash
-# Faça upload via FTP/SSH de todos os arquivos
-# Certifique-se que config/supabase.js está presente!
-```
-
-### 4. Verificação Pós-Deploy
+#### 5. Verificação Pós-Deploy
 
 Após o deploy, verifique:
 
 ✅ **Configuração do Supabase:**
 - Abra o console do navegador (F12)
-- Acesse a página de login
+- Acesse a página de login do seu site
 - Deve aparecer: `✓ Cliente Supabase inicializado`
-- **NÃO deve aparecer:** `❌ Erro: Cliente Supabase não inicializado!`
+- **NÃO deve aparecer:** `❌ Erro: Credenciais do Supabase não configuradas!`
 
 ✅ **Teste de Login:**
-- Tente fazer login com usuário existente
-- OU crie um novo cadastro
+- Clique em "Criar Conta"
+- Preencha os dados e crie um usuário
+- Faça login com as credenciais
 - Deve redirecionar para o dashboard
 
 ✅ **Teste de Funcionalidades:**
-- Dashboard deve carregar os cards
+- Dashboard deve carregar sem erros
 - Menu lateral deve funcionar
 - Navegação entre páginas deve ser fluida
 
+---
+
+## 🔧 Método Alternativo: Desenvolvimento Local
+
+Se você está rodando localmente (não em produção):
+
+### 1. Criar arquivo de configuração
+```bash
+cp config/supabase.template.js config/supabase.js
+```
+
+### 2. Editar `config/supabase.js`
+```javascript
+const SUPABASE_URL = 'https://sua-url.supabase.co';
+const SUPABASE_ANON_KEY = 'sua-chave-aqui';
+```
+
+### 3. Iniciar servidor local
+```bash
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve
+```
+
+### 4. Acessar
+```
+http://localhost:8000
+```
+
+---
+
 ## 🔒 Segurança
 
-### Arquivos Protegidos
+### ⚠️ IMPORTANTE:
+- As credenciais nas meta tags são **públicas** (anon key)
+- Isso é **normal e seguro** - a chave anon é feita para ser exposta
+- A segurança real está nas **políticas RLS** do Supabase
+- **NUNCA** exponha a `service_role` key
 
-O arquivo `config/supabase.js` está no `.gitignore` e **NUNCA** deve ser commitado no Git.
-
-### Variáveis de Ambiente (Opcional)
-
-Para maior segurança, você pode usar variáveis de ambiente:
-
-**Crie um arquivo `.env` (também no .gitignore):**
-```env
-VITE_SUPABASE_URL=https://seu-projeto.supabase.co
-VITE_SUPABASE_ANON_KEY=sua-chave-anonima-aqui
-```
-
-**E modifique `config/supabase.js`:**
-```javascript
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
-```
+### Proteção de Dados:
+- ✅ Row Level Security (RLS) ativado em todas as tabelas
+- ✅ Políticas configuradas por psicólogo
+- ✅ Cada usuário só acessa seus próprios dados
+- ✅ Conformidade com LGPD
 
 ## 🛠️ Troubleshooting
 
-### Erro: "Cliente Supabase não inicializado"
-**Causa:** Arquivo `config/supabase.js` não existe ou não foi carregado.
-**Solução:**
-1. Verifique se o arquivo existe
-2. Verifique se as credenciais estão corretas
-3. Limpe o cache do navegador (Ctrl+Shift+Del)
+### ❌ Erro: "Credenciais do Supabase não configuradas"
+**Causa:** As meta tags não foram editadas com as credenciais reais.
 
-### Erro no Login: "Invalid login credentials"
+**Solução:**
+1. Abra cada arquivo HTML
+2. Procure por `<meta name="supabase-url"`
+3. Substitua os valores de exemplo pelas suas credenciais
+4. Faça commit e redeploy:
+   ```bash
+   git add .
+   git commit -m "Adicionar credenciais Supabase"
+   git push
+   ```
+
+### ❌ Erro: "Invalid login credentials"
 **Causa:** Usuário não existe ou senha incorreta.
-**Solução:**
-1. Crie um novo usuário usando o botão "Criar Conta"
-2. Verifique se o email está correto
-3. Verifique no Supabase Dashboard > Authentication se o usuário foi criado
 
-### Erro: "Cannot read properties of undefined (reading 'auth')"
-**Causa:** O script `config/supabase.js` não foi carregado antes do `login.js`.
 **Solução:**
-1. Verifique a ordem dos scripts no HTML
-2. Certifique-se que está assim:
-```html
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="config/supabase.js"></script>
-<script src="js/auth/login.js"></script>
-```
+1. Clique em "Criar Conta" na tela de login
+2. Preencha todos os dados obrigatórios
+3. Após criar, faça login normalmente
 
-### Páginas não carregam após login
-**Causa:** RLS (Row Level Security) não configurado corretamente.
+### ❌ Erro no console: "Cannot read properties of undefined"
+**Causa:** Script supabase-init.js não está sendo carregado.
+
 **Solução:**
-1. Execute o script: `database/fix-rls-complete.sql`
-2. Verifique no Supabase Dashboard > Authentication > Policies
+1. Verifique se o arquivo `config/supabase-init.js` existe
+2. Limpe o cache do navegador (Ctrl+Shift+Del)
+3. Recarregue a página (Ctrl+F5)
+
+### ❌ Dashboard não carrega dados
+**Causa:** RLS não configurado corretamente.
+
+**Solução:**
+1. Acesse o Supabase Dashboard
+2. Vá em **Authentication** → **Policies**
+3. Execute novamente: `database/fix-rls-complete.sql`
+4. Faça logout e login novamente
+
+### ❌ Erro 404 no Netlify
+**Causa:** Configuração de rotas SPA.
+
+**Solução:**
+1. Crie arquivo `netlify.toml` na raiz:
+   ```toml
+   [[redirects]]
+     from = "/*"
+     to = "/index.html"
+     status = 200
+   ```
+2. Commit e redeploy
 
 ## 📞 Suporte
 

@@ -111,12 +111,28 @@ function calcularResumo(pacientes, sessoes, pagamentos) {
   const sessoesRealizadas = (sessoes || []).filter(s => s.status === 'realizada').length;
   const totalSessoes = sessoesRealizadas; // Contar apenas realizadas
   const totalFaltas = (sessoes || []).filter(s => s.status === 'falta').length;
-  const faturamento = (pagamentos || []).filter(p => p.status === 'pago').reduce((sum, p) => sum + (p.valor || 0), 0);
+  
+  // Separar receitas e despesas
+  const receitas = (pagamentos || []).filter(p => p.tipo_transacao === 'receita' && p.status === 'pago');
+  const despesas = (pagamentos || []).filter(p => p.tipo_transacao === 'despesa' && p.status === 'pago');
+  
+  const totalReceitas = receitas.reduce((sum, p) => sum + (p.valor || 0), 0);
+  const totalDespesas = despesas.reduce((sum, p) => sum + (p.valor || 0), 0);
+  const faturamento = totalReceitas - totalDespesas; // Lucro líquido
+  
   const taxaPresenca = totalSessoes > 0 ? ((sessoesRealizadas / (totalSessoes + totalFaltas)) * 100).toFixed(1) : 0;
   
   document.getElementById('totalPacientes').textContent = totalPacientes;
   document.getElementById('totalSessoes').textContent = totalSessoes;
-  document.getElementById('totalFaturamento').textContent = `R$ ${faturamento.toFixed(2)}`;
+  
+  // Atualizar cards de receitas, despesas e lucro líquido
+  document.getElementById('totalReceitas').textContent = `R$ ${totalReceitas.toFixed(2)}`;
+  document.getElementById('totalDespesas').textContent = `R$ ${totalDespesas.toFixed(2)}`;
+  
+  const lucroElement = document.getElementById('totalFaturamento');
+  lucroElement.textContent = `R$ ${faturamento.toFixed(2)}`;
+  lucroElement.style.color = faturamento >= 0 ? '#4CAF50' : '#f44336';
+  
   document.getElementById('taxaPresenca').textContent = `${taxaPresenca}%`;
   document.getElementById('totalFaltas').textContent = totalFaltas;
 }
@@ -155,16 +171,31 @@ function renderCharts(sessoes, pagamentos) {
     options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
   });
   
-  // Gráfico de Faturamento
+  // Gráfico de Faturamento (Receitas vs Despesas)
   const faturamentoPorMes = [];
+  const despesasPorMes = [];
   for (let i = 5; i >= 0; i--) {
     const data = new Date();
     data.setMonth(data.getMonth() - i);
-    const valor = (pagamentos || []).filter(p => {
+    
+    const receitas = (pagamentos || []).filter(p => {
       const pagData = new Date(p.data_pagamento);
-      return pagData.getMonth() === data.getMonth() && pagData.getFullYear() === data.getFullYear() && p.status === 'pago';
+      return pagData.getMonth() === data.getMonth() && 
+             pagData.getFullYear() === data.getFullYear() && 
+             p.status === 'pago' && 
+             p.tipo_transacao === 'receita';
     }).reduce((sum, p) => sum + (p.valor || 0), 0);
-    faturamentoPorMes.push(valor);
+    
+    const despesas = (pagamentos || []).filter(p => {
+      const pagData = new Date(p.data_pagamento);
+      return pagData.getMonth() === data.getMonth() && 
+             pagData.getFullYear() === data.getFullYear() && 
+             p.status === 'pago' && 
+             p.tipo_transacao === 'despesa';
+    }).reduce((sum, p) => sum + (p.valor || 0), 0);
+    
+    faturamentoPorMes.push(receitas);
+    despesasPorMes.push(despesas);
   }
   
   const ctx2 = document.getElementById('chartFaturamento');
@@ -173,13 +204,26 @@ function renderCharts(sessoes, pagamentos) {
     type: 'bar',
     data: {
       labels: meses,
-      datasets: [{
-        label: 'Faturamento',
-        data: faturamentoPorMes,
-        backgroundColor: '#10b981'
-      }]
+      datasets: [
+        {
+          label: 'Receitas',
+          data: faturamentoPorMes,
+          backgroundColor: '#10b981'
+        },
+        {
+          label: 'Despesas',
+          data: despesasPorMes,
+          backgroundColor: '#ef4444'
+        }
+      ]
     },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      plugins: { 
+        legend: { display: true }
+      }
+    }
   });
   
   // Gráfico de Status

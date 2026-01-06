@@ -32,6 +32,7 @@ WHERE tipo_transacao IS NULL;
 COMMENT ON COLUMN pagamentos.tipo_transacao IS 'Tipo da transação: receita (sessões) ou despesa';
 COMMENT ON COLUMN pagamentos.categoria IS 'Categoria da despesa: aluguel, material, equipamento, etc';
 COMMENT ON COLUMN pagamentos.descricao IS 'Descrição detalhada da despesa';
+COMMENT ON COLUMN pagamentos.data_pagamento IS 'Data do pagamento ou lançamento manual';
 
 -- Verificar estrutura atualizada
 SELECT 

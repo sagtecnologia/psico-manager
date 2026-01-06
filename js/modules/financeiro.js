@@ -48,17 +48,30 @@ function renderPagamentos() {
     tbody.innerHTML = '<tr><td colspan="7" class="text-center">Nenhum pagamento registrado</td></tr>';
     return;
   }
-  tbody.innerHTML = pagamentos.map(p => `
+  tbody.innerHTML = pagamentos.map(p => {
+    // Verifica se é lançamento manual (sem sessão) ou pagamento de sessão
+    const isLancamentoManual = !p.sessao_id || !p.sessao;
+    const pacienteNome = isLancamentoManual 
+      ? (p.tipo_transacao === 'receita' ? 'Receita Manual' : 'Despesa Manual') 
+      : (p.sessao?.paciente?.nome_completo || 'N/A');
+    const dataServico = isLancamentoManual 
+      ? '-' 
+      : formatDate(p.sessao?.data_hora);
+    
+    return `
     <tr>
       <td>${formatDate(p.data_pagamento)}</td>
-      <td>${p.sessao.paciente.nome_completo}</td>
-      <td>${formatDate(p.sessao.data_hora)}</td>
+      <td>${pacienteNome}</td>
+      <td>${dataServico}</td>
       <td>${p.forma_pagamento.replace('_', ' ')}</td>
-      <td>R$ ${(p.valor || 0).toFixed(2)}</td>
+      <td style="color: ${p.tipo_transacao === 'despesa' ? '#ef4444' : '#10b981'};">
+        ${p.tipo_transacao === 'despesa' ? '-' : '+'} R$ ${(p.valor || 0).toFixed(2)}
+      </td>
       <td><span class="status-badge ${p.status}">${p.status}</span></td>
       <td><button class="btn btn-sm btn-secondary" onclick="editPagamento('${p.id}')">Editar</button></td>
     </tr>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function calcularResumo() {
@@ -67,11 +80,19 @@ function calcularResumo() {
     const data = new Date(p.data_pagamento);
     return data.getMonth() === hoje.getMonth() && data.getFullYear() === hoje.getFullYear();
   });
-  const recebido = mesAtual.filter(p => p.status === 'pago').reduce((sum, p) => sum + (p.valor || 0), 0);
-  const pendente = mesAtual.filter(p => p.status === 'pendente').reduce((sum, p) => sum + (p.valor || 0), 0);
-  document.getElementById('totalRecebido').textContent = `R$ ${recebido.toFixed(2)}`;
-  document.getElementById('totalPendente').textContent = `R$ ${pendente.toFixed(2)}`;
-  document.getElementById('totalMes').textContent = `R$ ${(recebido + pendente).toFixed(2)}`;
+  
+  // Separar receitas e despesas pagas (somando manuais e de atendimentos)
+  const receitas = mesAtual.filter(p => p.tipo_transacao === 'receita' && p.status === 'pago');
+  const despesas = mesAtual.filter(p => p.tipo_transacao === 'despesa' && p.status === 'pago');
+  
+  const totalReceitas = receitas.reduce((sum, p) => sum + (p.valor || 0), 0);
+  const totalDespesas = despesas.reduce((sum, p) => sum + (p.valor || 0), 0);
+  const lucro = totalReceitas - totalDespesas;
+  
+  document.getElementById('totalReceitas').textContent = `R$ ${totalReceitas.toFixed(2)}`;
+  document.getElementById('totalDespesas').textContent = `R$ ${totalDespesas.toFixed(2)}`;
+  document.getElementById('totalLucro').textContent = `R$ ${lucro.toFixed(2)}`;
+  document.getElementById('totalLucro').style.color = lucro >= 0 ? '#10b981' : '#ef4444';
 }
 
 function setupEventListeners() {

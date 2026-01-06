@@ -76,6 +76,14 @@
             </svg>
             <span>Financeiro</span>
           </a>
+          <a href="lancamentos.html" class="nav-item">
+            <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+            </svg>
+            <span>Lançamentos</span>
+          </a>
           <a href="relatorios.html" class="nav-item active">
             <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
@@ -186,13 +194,34 @@
 
         <div class="summary-card">
           <div class="summary-header">
-            <span class="summary-title">Faturamento</span>
+            <span class="summary-title">Receitas</span>
+            <div class="summary-icon">💵</div>
+          </div>
+          <div class="summary-value" id="totalReceitas">R$ 0,00</div>
+          <div class="summary-detail">
+            Atendimentos + Manuais
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-header">
+            <span class="summary-title">Despesas</span>
+            <div class="summary-icon">💸</div>
+          </div>
+          <div class="summary-value" id="totalDespesas">R$ 0,00</div>
+          <div class="summary-detail">
+            Lançamentos Manuais
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-header">
+            <span class="summary-title">Lucro Líquido</span>
             <div class="summary-icon">💰</div>
           </div>
           <div class="summary-value" id="totalFaturamento">R$ 0,00</div>
           <div class="summary-detail">
-            <span class="summary-change" id="faturamentoChange">0%</span>
-            vs período anterior
+            Receitas - Despesas
           </div>
         </div>
 
